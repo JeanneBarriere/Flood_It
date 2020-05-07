@@ -6,6 +6,7 @@
 #include "API_Gene_instance.h"
 #include "Entete_Fonctions.h"
 #include "Liste_case.h"
+#include "Version_rapide.h"
 
 
 int main(int argc,char**argv){
@@ -24,12 +25,11 @@ int main(int argc,char**argv){
 
 
   if(argc!=7){
-    printf("usage: %s <dimension> <nb_de_couleurs> <niveau_difficulte> <graine> <exo:0-1-2> <aff 0/1>\n",argv[0]);
+    printf("usage: %s <dimension> <nb_de_couleurs> <niveau_difficulte> <graine> <exo:1-2-3> <aff 0/1>\n",argv[0]);
     return 1;
   }
 
   dim=atoi(argv[1]);
-
 
   nbcl=atoi(argv[2]);
   nivdif=atoi(argv[3]);
@@ -49,33 +49,30 @@ int main(int argc,char**argv){
 
 
 
-  if (aff==1){  /* Affichage de la grille */
     Grille_init(dim,nbcl, 500,&G);
-
     Grille_ouvre_fenetre(G);
-
     for (i=0;i<dim;i++)
       for (j=0;j<dim;j++){
-	Grille_attribue_couleur_case(G,i,j,M[i][j]);
+	       Grille_attribue_couleur_case(G,i,j,M[i][j]);
       }
 
+  if (aff==1){  /* Affichage de la grille */
     Grille_redessine_Grille(G);
-    Grille_attente_touche();
   }
 
-  temps_initial = clock ();
+  //temps_initial = clock ();
 
   if (exo==1){
      printf("%d essais\n", sequence_aleatoire_rec(M, G, dim, nbcl, aff));
-  }
-
-  if (exo==2){
+  } else if (exo==2){
      printf("%d essais\n", sequence_aleatoire_imp(M, G, dim, nbcl, aff));
+  } else if (exo==3){
+     printf("%d essais\n", sequence_aleatoire_rapide(M, G, dim, nbcl, aff));
   }
 
-  temps_final = clock ();
-  temps_cpu = (temps_final - temps_initial) * 1e-6;
-  printf("temps_cpu %f\n",temps_cpu);
+  // temps_final = clock ();
+  // temps_cpu = (temps_final - temps_initial) * 1e-6;
+  // printf("temps_cpu %f\n",temps_cpu);
 
 
   /* Desallocation de la matrice */
@@ -87,11 +84,9 @@ int main(int argc,char**argv){
 
 
 
-  if (aff==1){  /* Fermeture et désallocation de la grille */
-    Grille_ferme_fenetre();
-
+    /* Fermeture et désallocation de la grille */
     Grille_free(&G);
-  }
+
 
   return 0;
 }

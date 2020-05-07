@@ -18,6 +18,9 @@ typedef struct s_Zsg {
 /*Initialise la structure Zsg */
 void init_Zsg (S_Zsg * Z, int dim, int nbcl);
 
+/*Detruit la structure Zsg */
+void detruit_Zsg (S_Zsg * Z);
+
 /* Ajoute une case dans la liste Lzsg */
 void ajoute_Zsg (S_Zsg * Z, int i, int j);
 
@@ -32,5 +35,8 @@ int appartient_Bordure (S_Zsg * Z, int i, int j, int cl);
 
 /* Met a jour les champs Lzsg et B d'une S_Zsg lorsqu'une case bascule de l'un a l'autre */
 int agrandit_Zsg (int **M, S_Zsg *Z, int cl, int K, int l);
+
+/* Algorithme tirant au sort une couleur: il utilise la fonction precedente pour agrandir la Zsg */
+int sequence_aleatoire_rapide (int **M, Grille *G, int dim, int nbcl, int aff);
 
 #endif  /* __VERSION_RAPIDE__ */

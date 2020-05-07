@@ -12,7 +12,7 @@ void Grille_init(int dim, int nbcl, int taille_pixel,Grille **G){
   (*G)->dim=dim;
   (*G)->nbcl=nbcl;
 
- 
+
 
   (*G)->Tab=(char**) malloc(sizeof(char*)*dim);
   for (i=0;i<dim;i++)
@@ -33,7 +33,7 @@ void Grille_init(int dim, int nbcl, int taille_pixel,Grille **G){
     sprintf(coul, "%d",i);
     strcat((*G)->T_coul[cl],coul);
     strcat((*G)->T_coul[cl],"m");
-      
+
     strcat((*G)->T_coul[cl],ch2);
     sprintf(coul, "%d",i);
     strcat((*G)->T_coul[cl],coul);
@@ -41,7 +41,7 @@ void Grille_init(int dim, int nbcl, int taille_pixel,Grille **G){
     cl++;
     i++;
   }
-  
+
   i=0;
   while (i<8 && cl<nbcl){
     j=0;
@@ -51,14 +51,14 @@ void Grille_init(int dim, int nbcl, int taille_pixel,Grille **G){
 	sprintf(coul, "%d",i);
 	strcat((*G)->T_coul[cl],coul);
 	strcat((*G)->T_coul[cl],"m");
-      
+
 	strcat((*G)->T_coul[cl],ch2);
 	sprintf(coul, "%d",j);
 	strcat((*G)->T_coul[cl],coul);
 	strcat((*G)->T_coul[cl],"m\0");
 	cl++;
       }
-      j++;      
+      j++;
     }
     i++;
   }
@@ -66,13 +66,14 @@ void Grille_init(int dim, int nbcl, int taille_pixel,Grille **G){
 
 void Grille_free(Grille **G){
   int i;
-  
+
   for(i=0;i<(*G)->dim;i++) free((*G)->Tab[i]);
   free((*G)->Tab);
-    
+
+  for (i=0;i<(*G)->nbcl;i++) free((*G)->T_coul[i]);
   free((*G)->T_coul);
   free(*G);
-  
+
 }
 
 void Grille_ouvre_fenetre(Grille *G){
@@ -89,7 +90,7 @@ void Grille_ferme_fenetre()
 void Grille_attribue_couleur_case(Grille *G, int i, int j, int c){
 
   G->Tab[i][j]=c%49;
-  
+
 }
 
 void Grille_redessine_Grille(Grille *G){
@@ -115,4 +116,3 @@ void Grille_redessine_Grille(Grille *G){
   for (i=0;i<100000;i++){}
 
 }
-
