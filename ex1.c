@@ -12,7 +12,7 @@ void trouve_zonerec (int **M, int nbcase, int i, int j, int *taille, Liste Case 
 		trouve_zone_rec (M, nbcase ,i-1, j, taille ,L);
 	} 
 
-	if (( !=0) && (M[i][j-1]==coul)){
+	if (( j!=0) && (M[i][j-1]==coul)){
 		trouve_zone_rec (M, nbcase ,i,j-1, taille ,L); 
 	}
 
