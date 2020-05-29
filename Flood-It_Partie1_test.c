@@ -6,6 +6,7 @@
 #include "API_Gene_instance.h"
 #include "Entete_Fonctions.h"
 #include "Liste_case.h"
+#include "Version_rapide.h"
 
 int main(int argc,char**argv){
 
@@ -15,19 +16,20 @@ int main(int argc,char**argv){
 
   int dim, nbcl, nivdif, graine, exo, aff;
 
-  FILE* fichier = NULL;
+  FILE* fichier = NULL ;
 
-  fichier = fopen("vitesse_nbcl_aff.txt", "r+");
+  // fichier = fopen("EXO1/vitesse_dim.txt", "r+");
 
-  dim=50;
-  nbcl=2;
+  dim=5;
+  nbcl=5;
   nivdif=3;
   graine=2;
   exo=1;
   aff=0;
 
+
   /* Allocation puis Generation de l'instance */
-  while(nbcl<31){
+  while(dim<1001){
     temps_initial = clock () ;
     Grille *G;
     int i,j;
@@ -48,12 +50,10 @@ int main(int argc,char**argv){
       for (j=0;j<dim;j++){
         Grille_attribue_couleur_case(G,i,j,M[i][j]);
       }
-
-    //  Grille_redessine_Grille(G);
     }
 
     temps_initial = clock ();
-    sequence_aleatoire_imp(M, G, dim, nbcl, aff);
+    sequence_aleatoire_rec(M, G, dim, nbcl, aff);
 
     temps_final = clock ();
     temps_cpu = (temps_final - temps_initial) * 1e-6;
@@ -66,17 +66,15 @@ int main(int argc,char**argv){
     if (M) free(M);
 
     if (aff==1){  /* Fermeture et désallocation de la grille */
-      Grille_ferme_fenetre();
 
       Grille_free(&G);
     }
     temps_final = clock () ;
     temps_cpu = (( double ) ( temps_final - temps_initial ) ) / CLOCKS_PER_SEC ;
-    printf("test\n" );
-		fprintf (fichier, "%d %f \n", nbcl , temps_cpu ) ;
-    printf("test 2\n");
-    nbcl=nbcl+1;
+     printf ("%d %f \n", dim , temps_cpu ) ;
+		// fprintf (fichier, "%d %f \n", dim , temps_cpu ) ;
+    dim=dim+5;
   }
-  fclose(fichier);
+  // fclose(fichier);
   return 0;
 }

@@ -95,7 +95,7 @@ int agrandit_Zsg (int **M, S_Zsg *Z, int cl, int k, int l){
     if(i+1<(Z->dim)){
       if(!present_liste(p, i+1, j)){
         if(cl==M[i+1][j]){
-          if(!appartient_Zsg (Z, i+1, j)){
+          if((!appartient_Zsg (Z, i+1, j))&&!(appartient_Bordure(Z, i+1,j,M[i+1][j]))){
             ajoute_en_tete(p, i+1, j);
             ajoute_Zsg (Z,i+1, j);
             t++;
@@ -109,7 +109,7 @@ int agrandit_Zsg (int **M, S_Zsg *Z, int cl, int k, int l){
     if(j+1<(Z->dim)){
       if(!present_liste(p, i, j+1)){
         if(cl==M[i][j+1]){
-          if(!appartient_Zsg (Z, i, j+1)){
+          if((!appartient_Zsg (Z, i, j+1))&&!(appartient_Bordure(Z, i,j+1,M[i][j+1]))){
             ajoute_en_tete(p, i, j+1);
             ajoute_Zsg (Z,i, j+1);
             t++;
@@ -124,7 +124,7 @@ int agrandit_Zsg (int **M, S_Zsg *Z, int cl, int k, int l){
     if(i-1>=0){
       if(!present_liste(p, i-1, j)){
         if(cl==M[i-1][j]){
-          if(!appartient_Zsg (Z, i-1, j)){
+          if((!appartient_Zsg (Z, i-1, j))&&!(appartient_Bordure(Z, i-1,j,M[i-1][j]))){
             ajoute_en_tete(p, i-1, j);
             ajoute_Zsg (Z,i-1, j);
             t++;
@@ -138,7 +138,7 @@ int agrandit_Zsg (int **M, S_Zsg *Z, int cl, int k, int l){
     if(j-1>=0){
       if(!present_liste(p, i, j-1)){
         if(cl==M[i][j-1]){
-          if(!appartient_Zsg (Z, i, j-1)){
+          if((!appartient_Zsg (Z, i, j-1))&&!(appartient_Bordure(Z, i,j-1,M[i][j-1]))){
             ajoute_en_tete(p, i, j-1);
             ajoute_Zsg (Z,i, j-1);
             t++;

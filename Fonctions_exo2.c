@@ -54,7 +54,6 @@ void trouve_zone_imp(int **M, int dim, int *taille, ListeCase *L){
     }
 
   }
-  printf("%d\n",t);
 *taille = t;
 detruit_liste(p);
 free(p);

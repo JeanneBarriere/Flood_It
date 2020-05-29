@@ -1,7 +1,7 @@
 all: Flood-It_Partie1
 
-test1: Flood-It_Partie1_test.o Liste_case.o  API_Grille_txt.o API_Gene_instance.o Fonctions_exo1.o Fonctions_exo2.o
-	gcc -o Flood_test1 Flood-It_Partie1_test.o Liste_case.o API_Grille_txt.o API_Gene_instance.o Fonctions_exo1.o
+test: Flood-It_Partie1_test.o Liste_case.o  API_Grille_txt.o API_Gene_instance.o Fonctions_exo1.o Fonctions_exo2.o Version_rapide.o
+	gcc -g -o Test Flood-It_Partie1_test.o Liste_case.o API_Grille_txt.o API_Gene_instance.o Fonctions_exo1.o Fonctions_exo2.o Version_rapide.o
 
 API_Gene_instance.o: API_Gene_instance.c API_Gene_instance.h
 	gcc -c API_Gene_instance.c
@@ -28,4 +28,4 @@ Flood-It_Partie1: Flood-It_Partie1.o Liste_case.o  API_Grille_txt.o API_Gene_ins
 	gcc -o Flood-It_Partie1 Flood-It_Partie1.o Liste_case.o API_Grille_txt.o API_Gene_instance.o Fonctions_exo1.o Fonctions_exo2.o Version_rapide.o
 
 clean:
-	rm -f *.o Flood-It_Partie1 Flood_test1
+	rm -f *.o Flood-It_Partie1 Test

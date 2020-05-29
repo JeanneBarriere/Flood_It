@@ -16,14 +16,6 @@ int main(int argc,char**argv){
   int i,j;
   int **M;
 
-  clock_t
-    temps_initial, /* Temps initial en micro-secondes */
-    temps_final;   /* Temps final en micro-secondes */
-  float
-    temps_cpu;     /* Temps total en secondes */
-
-
-
   if(argc!=7){
     printf("usage: %s <dimension> <nb_de_couleurs> <niveau_difficulte> <graine> <exo:1-2-3> <aff 0/1>\n",argv[0]);
     return 1;
@@ -60,7 +52,6 @@ int main(int argc,char**argv){
     Grille_redessine_Grille(G);
   }
 
-  //temps_initial = clock ();
 
   if (exo==1){
      printf("%d essais\n", sequence_aleatoire_rec(M, G, dim, nbcl, aff));
@@ -70,11 +61,6 @@ int main(int argc,char**argv){
      printf("%d essais\n", sequence_aleatoire_rapide(M, G, dim, nbcl, aff));
   }
 
-  // temps_final = clock ();
-  // temps_cpu = (temps_final - temps_initial) * 1e-6;
-  // printf("temps_cpu %f\n",temps_cpu);
-
-
   /* Desallocation de la matrice */
   for(i = 0; i< dim; i++) {
     if (M[i])
@@ -82,10 +68,8 @@ int main(int argc,char**argv){
   }
   if (M) free(M);
 
-
-
-    /* Fermeture et désallocation de la grille */
-    Grille_free(&G);
+  /* Fermeture et désallocation de la grille */
+  Grille_free(&G);
 
 
   return 0;
