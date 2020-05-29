@@ -1,3 +1,7 @@
+#ifndef __PARTIE2__
+#define __PARTIE2__
+
+
 #include "Liste_case.h"
 #include "Entete_Fonctions.h"
 #include "API_Grille_txt.h"
@@ -42,3 +46,15 @@ typedef struct graphe_zone {
 
     Sommet *** mat;    /* Matrice de pointeurs sur les sommets indiquant a quel sommet appartient ue case (i, j) de la grille */
 }Graphe_zone;
+
+void ajoute_liste_sommet(Cellule_som ** pListe, Sommet * sommet_a_ajouter);
+
+void detruit_liste_sommet(Cellule_som **pliste);
+
+void ajoute_voisin(Sommet *s1, Sommet *s2);
+
+int adjacent(Sommet *s1, Sommet *s2);
+
+/* Creer un graphe zone tout entier a partir de la matrice M de dimension dim et contenant des cases de nbcl couleurs différentes*/
+Graphe_zone * cree_graphe_zone(int **M, int dim, int nbcl);
+#endif
